@@ -1,0 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okrifa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/11/26 18:43:34 by okrifa            #+#    #+#             */
+/*   Updated: 2015/12/08 22:28:46 by okrifa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int		ft_strlen(const char *s)
+{
+	int i = 0;
+
+	while (s[i])
+		i++;
+	return(i);
+}
+
+char	*ft_strncpy(char *dst, const char *src, size_t n)
+{
+	size_t i;
+
+	i = 0;
+	while (src[i] && i < n && i < ft_strlen(dst))
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (dst[i] && i <= n)
+	{
+		while (i <= n)
+		{
+			dst[i] = '\0';
+			i++;
+		}
+	}
+
+	return (dst);
+}
+
+int		main(int ac, char **av)
+{
+	if (ac == 3)
+		printf("%s", ft_strncpy(av[1], av[2], 2));
+	return(0);
+}

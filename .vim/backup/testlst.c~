@@ -1,0 +1,111 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   testlst.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okrifa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/14 14:33:55 by okrifa            #+#    #+#             */
+/*   Updated: 2016/01/14 15:17:08 by okrifa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "testlst.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+pile	*Push(pile **p, int Val)
+{
+	pile *element;
+
+	if ((element = (pile *)malloc(sizeof(pile))) == NULL)
+		return (NULL);
+	element->valeur = Val;
+	element->prec= *p;
+	*p = element;
+	return (*p);
+}
+
+int		Pop(pile **p)
+{
+	int Val;
+	pile *tmp;
+	if (!p)
+		return (-1);
+	tmp = (*p)->prec;
+	Val = (*p)->valeur;
+	free(*p);
+	*p = tmp;
+	return (Val);
+}
+
+int		Length(pile *p)
+{
+	int n;
+
+	n = 0;
+	while (p)
+	{
+		n++;
+		p = p->prec;
+	}
+	return (n);
+}
+
+void	Clear(pile **p)
+{
+	pile *tmp;
+	while (*p)
+	{
+		tmp = (*p)->prec;
+		free(*p);
+		*p = tmp;
+	}
+}
+
+void	View(pile *p)
+{
+	while (p)
+	{
+		printf("%d\n", p->valeur);
+		p = p->prec;
+	}
+}
+
+int main()
+{
+	pile *MaPile = NULL;   /* Impératif de l'initialiser à NULL */
+
+	Push(&MaPile, 10);
+	Push(&MaPile, 25);
+	Push(&MaPile, 33);
+	Push(&MaPile, 12);      /* Empile 4 valeurs. */
+
+	puts("Affichage de la pile :");
+	View(MaPile);       /* Affiche la totalité de la pile. */
+	puts("------");
+
+	printf("Nb d'elements : %d\n",Length(MaPile));
+	puts("------");
+
+	puts("Deux valeurs soutirees de la pile :");
+	printf("%d\n",Pop(&MaPile));   /* Affiche deux valeurs */
+	printf("%d\n",Pop(&MaPile));   /* soutirées de la pile. */
+	puts("------");
+
+	puts("Affichage de la pile :");
+	View(MaPile);       /* Affiche la totalité de la pile. */
+	puts("------");
+
+	Clear(&MaPile);        /* Vide la pile. */
+
+	Push(&MaPile, 18);      /* Empile une valeur. */
+
+	puts("Affichage de la pile apres vidage et ajout d'une valeur :");
+	View(MaPile);       /* Affiche la totalité de la pile. */
+	puts("------\n");
+
+	Clear(&MaPile);    /* Vider la pile avant de quitter. */
+
+	return 0;
+}

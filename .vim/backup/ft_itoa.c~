@@ -1,0 +1,99 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okrifa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/12/22 20:28:27 by okrifa            #+#    #+#             */
+/*   Updated: 2016/01/28 20:53:08 by okrifa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdlib.h> 
+#include <stdio.h> 
+
+static int			ft_nbrch(int n)
+{
+	unsigned int	i;
+
+	i = 1;
+	if (n < 0)
+	{
+		n = -n;
+		i++;
+	}
+	while (n > 9)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
+}
+
+int		ft_strlen(char *s)
+{
+	int i = 0;
+	while (s[i])
+	{
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_strdup(char *str)
+{
+	char	*dup;
+	int		i;
+
+	i = 0;
+	dup = (char*)malloc((ft_strlen(str) + 1) * sizeof(char));
+	if (dup == NULL)
+	{
+		return (NULL);
+	}
+	while (str[i])
+	{
+		dup[i] = str[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
+
+char				*ft_itoa(int n)
+{
+	char			*str;
+	int				i;
+
+	i = ft_nbrch(n) - 1;
+	if (n == -2147483648)
+		str = ft_strdup("-2147483648");
+	else
+	{
+		if ((str = (char *)malloc((i + 2) * sizeof(char))) == NULL)
+			return (NULL);
+		if (n == 0)
+			str[i] = '0';
+		str[i + 1] = '\0';
+		if (n < 0 && n != -2147483648)
+		{
+			n = -n;
+			str[0] = '-';
+		}
+		while (n > 0)
+		{
+			str[i--] = n % 10 + 48;
+			n = n / 10;
+		}
+	}
+	return (str);
+}
+
+int main(int ac, char **av)
+{
+	if (ac == 2)
+	{
+		printf("%s", ft_itoa(atoi(av[1])));
+	}
+}

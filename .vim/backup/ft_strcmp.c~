@@ -1,0 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okrifa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/12 16:48:08 by okrifa            #+#    #+#             */
+/*   Updated: 2016/01/12 16:52:22 by okrifa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h>
+#include <string.h>
+
+int		ft_strcmp(char *s1, char *s2)
+{
+	unsigned int i = 0;
+	unsigned int j = 0;
+	while (s1[i] == s2[j] && s1[i] && s2[j])
+	{
+		i++;
+		j++;
+	}
+	return (s1[i] - s2[j]);
+}
+
+int main(int ac, char **av)
+{
+	if (ac == 3)
+	{
+		printf("ft : %d\n", ft_strcmp(av[1], av[2]));
+		printf("no : %d\n", strcmp(av[1], av[2]));
+	}
+
+}

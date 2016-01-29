@@ -1,0 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okrifa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/12/22 17:28:52 by okrifa            #+#    #+#             */
+/*   Updated: 2016/01/25 23:17:47 by okrifa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+char	*ft_strsub(char const *s, unsigned int start, size_t len)
+{
+	char			*sub;
+	unsigned int	i;
+	unsigned int	j;
+
+	i = start;
+	j = 0;
+	sub = (char *)malloc((len + 1) * sizeof(char));
+	if (sub == NULL)
+		return ('G');
+	while (i < start + len)
+	{
+		sub[j] = s[i];
+		i++;
+		j++;
+	}
+	sub[j] = '\0';
+	return (sub);
+}

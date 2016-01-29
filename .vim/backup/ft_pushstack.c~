@@ -1,0 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_pushstack.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okrifa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/14 15:22:30 by okrifa            #+#    #+#             */
+/*   Updated: 2016/01/14 15:34:33 by okrifa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+t_stack		*ft_pushstack(t_stack **lastin, int val)
+{
+	t_stack *element;
+
+	if ((element = (t_stack *)malloc(sizeof(t_stack))) == NULL)
+		return (NULL);
+	element->data = val;
+	element->prev = *lastin;
+	*lastin = element;
+	return (*p);
+}

@@ -1,0 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okrifa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/12/22 17:47:02 by okrifa            #+#    #+#             */
+/*   Updated: 2016/01/22 14:07:49 by okrifa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+#include <stdio.h>
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*sjoin;
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	if ((str = ft_strdup(s2)) == NULL)
+		return (NULL);
+	i = 0;
+	j = 0;
+	if (*s1 == '\0' || *s2 == '\0')
+		return ((char *)s1);
+	if ((sjoin = ft_strnew(ft_strlen(s1) + ft_strlen(str))) == NULL)
+		return (NULL);
+	while (i < ft_strlen(s1) && s1[i])
+	{
+		sjoin[i] = s1[i];
+		i++;
+	}
+	while (i < (ft_strlen(str) + ft_strlen(s1)))
+	{
+		sjoin[i] = str[j];
+		i++;
+		j++;
+	}
+	return (sjoin);
+}

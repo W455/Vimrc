@@ -1,0 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okrifa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/14 15:47:00 by okrifa            #+#    #+#             */
+/*   Updated: 2016/01/14 15:55:59 by okrifa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+#include <stdio.h>
+
+int main()
+{
+	t_stack *MaPile = NULL;   /* Impératif de l'initialiser à NULL */
+
+	ft_pushstack(&MaPile, 10);
+	ft_pushstack(&MaPile, 25);
+	ft_pushstack(&MaPile, 33);
+	ft_pushstack(&MaPile, 12);      /* Empile 4 valeurs. */
+
+	puts("Affichage de la pile :");
+	ft_viewstack(MaPile);       /* Affiche la totalité de la pile. */
+	puts("------");
+
+	printf("Nb d'elements : %d\n",Length(MaPile));
+	puts("------");
+
+	puts("Deux valeurs soutirees de la pile :");
+	printf("%d\n",ft_popstack(&MaPile));   /* Affiche deux valeurs */
+	printf("%d\n",ft_popstack(&MaPile));   /* soutirées de la pile. */
+	puts("------");
+
+	puts("Affichage de la pile :");
+	ft_viewstack(MaPile);       /* Affiche la totalité de la pile. */
+	puts("------");
+
+	ft_clearstack(&MaPile);        /* Vide la pile. */
+
+	ft_pushstack(&MaPile, 18);      /* Empile une valeur. */
+
+	puts("Affichage de la pile apres vidage et ajout d'une valeur :");
+	ft_viewstack(MaPile);       /* Affiche la totalité de la pile. */
+	puts("------\n");
+
+	ft_clearstack(&MaPile);    /* Vider la pile avant de quitter. */
+
+	return 0;
+}

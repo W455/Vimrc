@@ -1,0 +1,87 @@
+" **************************************************************************** "
+"                                                                              "
+"                                                         :::      ::::::::    "
+"    .vimrc                                             :+:      :+:    :+:    "
+"                                                     +:+ +:+         +:+      "
+"    By: okrifa <marvin@42.fr>                      +#+  +:+       +#+         "
+"                                                 +#+#+#+#+#+   +#+            "
+"    Created: 2015/12/04 21:44:25 by okrifa            #+#    #+#              "
+"    Updated: 2015/12/08 20:29:19 by okrifa           ###   ########.fr        "
+"                                                                              "
+" **************************************************************************** "
+
+"Choix du theme de couleur
+colorscheme mustang
+
+"Numerote les lignes
+set number
+
+"Ajoute la selection par la souris
+set mouse=a
+
+"Desactive la compatibilite avec vi
+set nocompatible
+
+"Determine le type de fichier et l'indentation qui en decoule
+filetype indent plugin on
+
+"Active la colo syntaxique
+syntax on
+
+"Affiche le numero des lignes
+set number
+
+"Affiche la position du curseur
+set ruler
+
+"Option d'indentation intelligente
+set smartindent
+set autoindent
+
+"Ferme la parenthese ou accolade et place le curseur au centre
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+
+"Highlight les whitespaces de fin de ligne
+highlight ExtraWhitespace ctermbg=darkred guibg=#382424
+3match ExtraWhitespace /\s\+$/
+
+"Highlight les caracteres au dessus de 80c
+highlight OverLength ctermbg=green guibg=#525252
+1match OverLength /\%81v.\+/
+
+"Highlight les doubles whitespaces
+highlight double_space ctermbg=blue
+2match double_space / \s\|\s+$/
+
+"Cree des back up
+set backup
+
+"Deplace les back up
+set backupdir=~/.vim/backup
+
+"Meilleur completion
+set wildmenu
+
+" Use visual bell instead of beeping when doing something wrong
+set visualbell
+
+set history=1000 " remember more commands and search history
+set undolevels=1000 " use many muchos levels of undo
+
+" change the terminal's title
+set title
+
+"don't beep
+set noerrorbells
+
+nnoremap ; :
+nnoremap Wq wq
+
+" match the next brace
+nnoremap <tab> %
+vnoremap <tab> %
+set wrap
+set formatoptions=qrn1
+set linebreak

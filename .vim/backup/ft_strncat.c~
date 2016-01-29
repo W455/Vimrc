@@ -1,0 +1,52 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okrifa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2015/11/26 18:32:59 by okrifa            #+#    #+#             */
+/*   Updated: 2015/12/08 22:51:29 by okrifa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int		ft_strlen(const char *s)
+{
+	int i = 0;
+
+	while (s[i])
+		i++;
+	return(i);
+}
+
+char	*ft_strncat(char *dest, const char *src, size_t n)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (dest[i])
+		i++;
+	while (src[j] && j < n)
+	{
+		dest[i] = src[j];
+		j++;
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+int		main(int ac, char **av)
+{
+	char s[18] = "Salut ";
+
+	if (ac == 2)
+		printf("%s", ft_strncat(s, av[1], 6));
+	return(0);
+}

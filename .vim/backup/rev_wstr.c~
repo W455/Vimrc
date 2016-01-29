@@ -1,0 +1,95 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rev_wstr.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: okrifa <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/01/19 18:43:00 by okrifa            #+#    #+#             */
+/*   Updated: 2016/01/19 19:10:58 by okrifa           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+
+void	ft_putchar(char c)
+{
+	write(1, &c, 1);
+}
+
+int		ft_strlen(char *s)
+{
+	int i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+void	ft_putstr(char *s)
+{
+	write(1, s, ft_strlen(s));
+}
+
+int		ft_nbword(char *s)
+{
+	int i = 0;
+	int n = 0;
+
+	if (s[0] == '\0')
+		return (0);
+	n++;
+	while (s[i])
+	{
+		if (s[i] == ' ' || s[i] == '\t' || s[i] == '\0')
+			n++;
+		i++;
+	}
+	return (n);
+}
+
+char	**ft_split(char *s)
+{
+
+	char **tab;
+	int i = 0;
+	int j = 0;
+	int k = 0;
+
+	if ((tab = (char **)malloc((ft_nbword(s) + 1) * sizeof(char *))) == NULL)
+		return (NULL);
+	while (s[i])
+	{
+		while (s[i] == ' ' || s[i] == '\t' || s[i] == '\0')
+			i++;
+		if ((tab[k] = (char *)malloc((ft_strlen(s) + 1) * sizeof(char))) == NULL)
+			return (NULL);
+		while (s[i] != ' ' && s[i] != '\t' && s[i] != '\0' && s[i])
+		{
+			tab[k][j] = s[i];
+			i++;
+			j++;
+		}
+		j = 0;
+		k++;
+	}
+	//tab[k][0] = '\0';
+	return (tab);
+}
+
+int		main(int ac, char **av)
+{
+	if (ac == 2 && ft_nbword(av[1]) != 0)
+	{
+		char **tab = ft_split(av[1]);
+		int i = ft_nbword(av[1]) - 1;
+		while (i >= 0)
+		{
+			ft_putstr(tab[i]);
+			i--;
+			ft_putchar(' ');
+		}
+	}
+	ft_putchar('\n');
+}
